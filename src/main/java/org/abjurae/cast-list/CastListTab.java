@@ -1,4 +1,4 @@
-package com.bar.foo;
+package org.abjurae.cast-list;
 
 import gg.xp.reevent.events.EventContext;
 import gg.xp.reevent.events.InitEvent;
@@ -11,19 +11,19 @@ import javax.swing.*;
 import java.awt.*;
 
 @ScanMe
-public class MySampleTabOutOfTree implements PluginTab {
+public class CastListTab implements PluginTab {
 
 	private JLabel initLabel;
 	private volatile boolean initReceived;
 
 	@Override
 	public String getTabName() {
-		return "My Sample Tab";
+		return "Cast List Overlay";
 	}
 
 	@Override
 	public Component getTabContents() {
-		TitleBorderFullsizePanel panel = new TitleBorderFullsizePanel("My Sample Plugin Tab");
+		TitleBorderFullsizePanel panel = new TitleBorderFullsizePanel("Cast List");
 		panel.add(new JLabel("It Works! (Out of tree version)"));
 		initLabel = new JLabel();
 		panel.add(initLabel);

@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
-public class MySampleUnitTest {
+public class CastListUnitTest {
 
-	private static final Logger log = LoggerFactory.getLogger(MySampleUnitTest.class);
+	private static final Logger log = LoggerFactory.getLogger(CastListUnitTest.class);
 
 	@Test
 	void sampleTest() {

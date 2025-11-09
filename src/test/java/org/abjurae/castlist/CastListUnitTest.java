@@ -1,4 +1,4 @@
-package com.bar.foo;
+package org.abjurae.castlist;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package org.abjurae.cast-list;
+package org.abjurae.castlist;
 
 import gg.xp.reevent.events.EventContext;
 import gg.xp.reevent.events.InitEvent;

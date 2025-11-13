@@ -1,46 +1,47 @@
 package org.abjurae.castlist;
 
-import gg.xp.reevent.events.EventContext;
-import gg.xp.reevent.events.InitEvent;
-import gg.xp.reevent.scan.HandleEvents;
 import gg.xp.reevent.scan.ScanMe;
-import gg.xp.xivsupport.gui.TitleBorderFullsizePanel;
-import gg.xp.xivsupport.gui.extra.PluginTab;
+import gg.xp.xivsupport.gui.WrapLayout;
+import gg.xp.xivsupport.gui.extra.TopDownSimplePluginTab;
+import gg.xp.xivsupport.persistence.gui.BooleanSettingGui;
+import gg.xp.xivsupport.persistence.gui.ColorSettingGui;
+import gg.xp.xivsupport.persistence.gui.IntSettingGui;
+import gg.xp.xivsupport.persistence.gui.IntSettingSpinner;
 
 import javax.swing.*;
 import java.awt.*;
 
 @ScanMe
-public class CastListTab implements PluginTab {
+public class CastListTab extends TopDownSimplePluginTab {
+    private final CastListSettings settings;
+    private final CastListColorProviderImpl clcp;
 
-	private JLabel initLabel;
-	private volatile boolean initReceived;
+	public CastListTab(CastListSettings settings, CastListColorProviderImpl clcp) {
+        super("Cast List Overlay", 400);
+        this.settings = settings;
+        this.clcp = clcp;
+    }
 
-	@Override
-	public String getTabName() {
-		return "Cast List Overlay";
-	}
+    @Override
+    public int getSortOrder() {
+        return 150;
+    }
 
-	@Override
-	public Component getTabContents() {
-		TitleBorderFullsizePanel panel = new TitleBorderFullsizePanel("Cast List");
-		panel.add(new JLabel("It Works! (Out of tree version)"));
-		initLabel = new JLabel();
-		panel.add(initLabel);
-		recalc();
-		return panel;
-	}
+    @Override
+    protected Component[] provideChildren(JPanel outer) {
+        JCheckBox reverse = new BooleanSettingGui(settings.getReverse(), "Reverse (Newest Bottom)").getComponent();
+        JPanel maxBars = new IntSettingSpinner(settings.getMaxDisplayedBars(), "Max Displayed Bars").getComponent();
+        JPanel barWidth = new IntSettingGui(settings.getBarWidth(), "Bar Width").getComponent();
+        JPanel barHeight = new IntSettingGui(settings.getBarHeight(), "Bar Height").getComponent();
 
-	private void recalc() {
-		if (initLabel != null) {
-			initLabel.setText(initReceived ? "Init Event Received!" : "No Init Event Received Yet...");
-		}
-	}
+        JLabel colorsLabel = new JLabel("Color Settings");
+        JPanel colorsPanel = new JPanel();
+        colorsPanel.setLayout(new WrapLayout(FlowLayout.LEFT, 3, 3));
+        colorsPanel.add(new ColorSettingGui(clcp.getActiveSetting(), "Base Color", () -> true).getComponent());
+        colorsPanel.add(new ColorSettingGui(clcp.getTargetedSetting(), "Targeted (on you) Color", () -> true).getComponent());
+        colorsPanel.add(new ColorSettingGui(clcp.getHiddenActorSetting(), "Hidden Cast Color", () -> true).getComponent());
+        colorsPanel.add(new ColorSettingGui(clcp.getFontSetting(), "Font Color", () -> true).getComponent());
 
-
-	@HandleEvents
-	public void handleEvents(EventContext context, InitEvent init) {
-		initReceived = true;
-		recalc();
+        return new Component[]{reverse, maxBars, barWidth, barHeight, colorsLabel, colorsPanel};
 	}
 }

@@ -50,10 +50,8 @@
     <inspection_tool class="CollectionsFieldAccessReplaceableByMethodCall" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ComparableImplementedButEqualsNotOverridden" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CompareToUsesNonFinalVariable" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="ComparisonOfShortAndChar" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConditionSignal" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConfusingFloatingPointLiteral" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="ConfusingMainMethod" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConfusingOctalEscape" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConstantAssertCondition" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConstantMathCall" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -69,7 +67,6 @@
       <option name="ignoreLocalVariables" value="false" />
       <option name="ignorePrivateMethodsAndFields" value="false" />
     </inspection_tool>
-    <inspection_tool class="DefaultNotLastCaseInSwitch" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DollarSignInName" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DoubleCheckedLocking" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreOnVolatileVariables" value="true" />
@@ -148,7 +145,6 @@
       <option name="m_ignoreEmptyMethods" value="true" />
     </inspection_tool>
     <inspection_tool class="MethodMayBeSynchronized" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="MisorderedAssertEqualsArguments" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="MissortedModifiers" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="m_requireAnnotationsFirst" value="true" />
     </inspection_tool>
@@ -163,7 +159,6 @@
       <option name="m_ignoreNonPublicClasses" value="false" />
     </inspection_tool>
     <inspection_tool class="NonReproducibleMathCall" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="NonSerializableWithSerialVersionUIDField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NonStaticFinalLogger" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="loggerClassName" value="java.util.logging.Logger,org.slf4j.Logger,org.apache.commons.logging.Log,org.apache.log4j.Logger,org.apache.logging.log4j.Logger" />
     </inspection_tool>
@@ -182,7 +177,6 @@
     <inspection_tool class="ParameterTypePreventsOverriding" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="PointlessIndexOfComparison" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ProblematicVarargsMethodOverride" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="ProblematicWhitespace" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="PublicStaticArrayField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="PublicStaticCollectionField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="RandomDoubleForRandomInteger" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -191,7 +185,6 @@
       <option name="ignoreSerializable" value="false" />
       <option name="ignoreCloneable" value="false" />
     </inspection_tool>
-    <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ReplaceAssignmentWithOperatorAssignment" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreLazyOperators" value="true" />
       <option name="ignoreObscureOperators" value="false" />
@@ -213,7 +206,6 @@
     <inspection_tool class="SimplifiableAnnotation" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SimplifiableEqualsExpression" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SimplifyForEach" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
-    <inspection_tool class="SizeReplaceableByIsEmpty" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SleepWhileHoldingLock" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SocketResource" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="insideTryAllowed" value="false" />
@@ -228,7 +220,6 @@
     </inspection_tool>
     <inspection_tool class="StringBufferToStringInConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="StringConcatenationArgumentToLogCall" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="StringEqualsEmptyString" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="StringReplaceableByStringBuffer" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="onlyWarnOnLoop" value="true" />
     </inspection_tool>
@@ -243,7 +234,6 @@
     <inspection_tool class="ThrowCaughtLocally" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreRethrownExceptions" value="true" />
     </inspection_tool>
-    <inspection_tool class="TrivialStringConcatenation" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="TypeParameterExtendsFinalClass" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UNCHECKED_WARNING" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="IGNORE_UNCHECKED_ASSIGNMENT" value="false" />

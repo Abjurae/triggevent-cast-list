@@ -14,9 +14,11 @@ public class CastListBarRenderer implements TableCellRenderer {
     private final TimelineBar bar = new TimelineBar();
     private final TableCellRenderer fallback = new DefaultTableCellRenderer();
     private final CastListColorProvider colorProvider;
+    private final CastListSettings settings;
 
-    public CastListBarRenderer(CastListColorProvider colorProvider) {
+    public CastListBarRenderer(CastListColorProvider colorProvider, CastListSettings settings) {
         this.colorProvider = colorProvider;
+        this.settings = settings;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class CastListBarRenderer implements TableCellRenderer {
     }
 
     protected void formatLabel(@NotNull CastTracker item) {
-        bar.setLeftTextOptions(item.getCast().getAbility().getName());
+        bar.setLeftTextOptions(item.getCast().getAbility().getName() + (settings.getShowAbilityId().get() ? String.format(" (%02d)", item.getCast().getAbility().getId() % 100) : ""));
         bar.setRightText(String.format("%.1f", item.getEstimatedRemainingDuration().toMillis() / 1000d));
         bar.seticon(null);
     }
@@ -52,6 +54,9 @@ public class CastListBarRenderer implements TableCellRenderer {
     protected Color getBarColor(@NotNull CastTracker item) {
         if (item.getCast().getTarget().isThePlayer()) {
             return colorProvider.getTargetedColor();
+        }
+        if (item.getCast().getTarget().isPc()) {
+            return colorProvider.getOtherTargetedColor();
         }
         if (item.getCast().getSource().isFake()) {
             return colorProvider.getHiddenActorColor();

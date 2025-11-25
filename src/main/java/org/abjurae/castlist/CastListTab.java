@@ -33,15 +33,17 @@ public class CastListTab extends TopDownSimplePluginTab {
         JPanel maxBars = new IntSettingSpinner(settings.getMaxDisplayedBars(), "Max Displayed Bars").getComponent();
         JPanel barWidth = new IntSettingGui(settings.getBarWidth(), "Bar Width").getComponent();
         JPanel barHeight = new IntSettingGui(settings.getBarHeight(), "Bar Height").getComponent();
+        JCheckBox showAbilityId = new BooleanSettingGui(settings.getShowAbilityId(), "Show Ability IDs (shortened)").getComponent();
 
         JLabel colorsLabel = new JLabel("Color Settings");
         JPanel colorsPanel = new JPanel();
         colorsPanel.setLayout(new WrapLayout(FlowLayout.LEFT, 3, 3));
         colorsPanel.add(new ColorSettingGui(clcp.getActiveSetting(), "Base Color", () -> true).getComponent());
-        colorsPanel.add(new ColorSettingGui(clcp.getTargetedSetting(), "Targeted (on you) Color", () -> true).getComponent());
+        colorsPanel.add(new ColorSettingGui(clcp.getTargetedSetting(), "Targeted (On You) Color", () -> true).getComponent());
+        colorsPanel.add(new ColorSettingGui(clcp.getOtherTargetedSetting(), "Targeted (On Others) Color", () -> true).getComponent());
         colorsPanel.add(new ColorSettingGui(clcp.getHiddenActorSetting(), "Hidden Cast Color", () -> true).getComponent());
         colorsPanel.add(new ColorSettingGui(clcp.getFontSetting(), "Font Color", () -> true).getComponent());
 
-        return new Component[]{reverse, maxBars, barWidth, barHeight, colorsLabel, colorsPanel};
+        return new Component[]{reverse, maxBars, barWidth, barHeight, showAbilityId, colorsLabel, colorsPanel};
 	}
 }

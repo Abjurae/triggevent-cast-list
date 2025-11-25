@@ -3,6 +3,7 @@ package org.abjurae.castlist;
 import gg.xp.reevent.scan.ScanMe;
 import gg.xp.xivsupport.events.actlines.events.HasDuration;
 import gg.xp.xivsupport.events.state.combatstate.ActiveCastRepository;
+import gg.xp.xivsupport.events.state.combatstate.CastResult;
 import gg.xp.xivsupport.events.state.combatstate.CastTracker;
 import gg.xp.xivsupport.gui.overlay.OverlayConfig;
 import gg.xp.xivsupport.gui.overlay.RefreshLoop;
@@ -39,7 +40,7 @@ public class CastListOverlay extends XivOverlay {
         tableModel = CustomTableModel.builder(() -> current)
                 .addColumn(new CustomColumn<>("Bar", Function.identity(),
                         c -> {
-                            c.setCellRenderer(new CastListBarRenderer(clcp));
+                            c.setCellRenderer(new CastListBarRenderer(clcp, settings));
                         }))
                 .build();
         table = new JTable(tableModel);
@@ -50,11 +51,11 @@ public class CastListOverlay extends XivOverlay {
         barWidth.addListener(this::repackSize);
         barHeight = settings.getBarHeight();
         barHeight.addListener(this::repackSize);
-        table.setRowHeight(barHeight.get());
         reverse = settings.getReverse();
         getPanel().add(table);
         RefreshLoop<CastListOverlay> refresher = new RefreshLoop<>("CastListOverlay", this, CastListOverlay::refresh, dt -> dt.calculateScaledFrameTime(50));
         refresher.start();
+        repackSize();
     }
 
     @Override
@@ -69,7 +70,12 @@ public class CastListOverlay extends XivOverlay {
         List<CastTracker> activeCasts = acr.getAll();
         Set<String> uniqueAbilities = new HashSet<>();
         List<CastTrackerListWrapper> filteredCasts = activeCasts.stream()
-                .filter(cast -> !cast.getCast().getSource().isPc() && !cast.wouldBeExpired() && uniqueAbilities.add(cast.getCast().getAbility().getId() + "|" + cast.getEstimatedRemainingDuration().toMillis()))
+                .filter(cast -> !cast.getCast().getSource().isPc()
+                        && cast.getResult() == CastResult.IN_PROGRESS
+                        && !cast.wouldBeExpired()
+                        && !(cast.getCast().getSource().getParent() != null && cast.getCast().getSource().getParent().isPc())
+                        && uniqueAbilities.add(cast.getCast().getAbility().getId() + "|" + (cast.getEstimatedRemainingDuration().toMillis() / 100)
+                ))
                 .sorted(Comparator.comparing(HasDuration::getEstimatedRemainingDuration))
                 .limit(numberOfRows.get())
                 .map(CastTrackerListWrapper::new)
